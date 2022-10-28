@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: http-vs
+  namespace: test
+spec:
+  gateways:
+  - test/tcp-gateway
+  hosts:
+  - aj-test.plexer.rcs-debug.ccloud-poc.shoot.canary.k8s-hana.ondemand.com
+  tcp:
+    - match:
+      - port: 2379
+      route:
+        - destination:
+            host: tcp-server-0.tcp-server.test.svc.cluster.local
+            port:
+              number: 2379

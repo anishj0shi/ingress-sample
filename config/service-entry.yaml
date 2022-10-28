@@ -4,10 +4,12 @@ metadata:
   name: sfs-entry
 spec:
   hosts:
-    - web-0.nginx.test.svc.cluster.local
+    - tcp-server-0.tcp-server.test.svc.cluster.local
   location: MESH_INTERNAL
+  exportTo:
+    - .
   ports:
-    - name: http
-      number: 80
+    - name: tcp
+      number: 2379
       protocol: TCP
   resolution: DNS
